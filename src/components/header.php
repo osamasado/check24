@@ -1,4 +1,8 @@
 <?php
+use check24\service\DatabaseConnector;
+require_once ($server_path.'/src/service/DatabaseConnector.php');
+$dbConnect = DatabaseConnector::getInstance();
+$connection = $dbConnect->dbConnect();
 $loggedIn = false;
 $disabled = "disabled";
 if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]) {
@@ -22,13 +26,15 @@ else {
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="<?php $server_path;?>assets/style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $server_path;?>src/assets/css/style.css">
 
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+<script src="<?php echo  $server_path?>src/assets/js/ajax_request.js" type="text/javascript"></script>
+<script src="<?php echo  $server_path?>src/assets/js/js.js" type="text/javascript"></script>
 <table style="height: 150px;">
     <tbody>
     <tr>
@@ -76,14 +82,6 @@ else {
                     </li>
                 </ul>
             </div>
-            <!--
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-            -->
         </div>
     </div>
 </nav>
-</body>
-</html>

@@ -10,29 +10,37 @@ include_once('DatabaseConfig.php');
 
 class DatabaseConnector
 {
-    public $connectionString;
-    public $dataSet;
+    private $connectionString;
+    private $dataSet;
     private $sqlQuery;
+    private static $instance = null;
 
     protected $databaseName;
     protected $hostName;
     protected $userName;
     protected $passWord;
 
-   public function __construct() {
+    private function __construct() {
         $this -> connectionString = NULL;
         $this -> sqlQuery = NULL;
         $this -> dataSet = NULL;
+        $this -> databaseName = Databaseconfig::$dbName;
+        $this -> hostName =  Databaseconfig::$hostName;
+        $this -> userName =  Databaseconfig::$userName;
+        $this -> passWord =  Databaseconfig::$passWord;
+    }
+    public static function getInstance(): ?DatabaseConnector
+    {
+        if(!self::$instance)
+        {
+            self::$instance = new DatabaseConnector();
+        }
 
-        $dbConfig = new Databaseconfig();
-        $this -> databaseName = $dbConfig -> dbName;
-        $this -> hostName = $dbConfig -> hostName;
-        $this -> userName = $dbConfig -> userName;
-        $this -> passWord = $dbConfig ->passWord;
-        $dbConfig = NULL;
+        return self::$instance;
     }
 
-    public function dbConnect()    {
+    public function dbConnect()
+    {
         $this -> connectionString = mysqli_connect($this -> hostName,$this -> userName,$this -> passWord);
         mysqli_select_db($this -> connectionString,$this -> databaseName);
         return $this -> connectionString;
