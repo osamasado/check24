@@ -19,9 +19,9 @@
                 </div>
             </div>
             <div class="row">
-                <label for="Text" class="col-sm-2 col-form-label">Text:</label>
+                <label for="editor" class="col-sm-2 col-form-label">Text:</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" id="Text" name="text" rows="3" placeholder="Article Text ..." required></textarea>
+                    <textarea class="form-control" id="editor" name="text" rows="3" placeholder="Article Text ..." required></textarea>
                 </div>
             </div>
             <div class="row mb-3"></div>
@@ -36,3 +36,11 @@
     </div
     <div class="col-2"></div>
 </div>
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+<script>
+    tinymce.init({
+        selector: 'textarea#editor',
+        menubar: false
+    });
+</script>
