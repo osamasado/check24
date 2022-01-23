@@ -1,4 +1,7 @@
 # check24
 ### Login info:
-- User name: `osama`
+- Username: `osama`
 - Password: `osama`
+### Account 2
+- Username: `sado`
+- Password: `sado`
